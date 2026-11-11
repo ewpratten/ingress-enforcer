@@ -1,0 +1,19 @@
+[package]
+name = "ingress-enforcer"
+description = "Drops traffic forwarded in from a BGP peer unless it's headed for a prefix exported to that peer"
+authors = ["Evan Pratten <evan@ewpratten.com>"]
+version = "0.1.0"
+edition = "2024"
+
+# This runs on BGP routers (see states/bgp), so ewconfig's install.sh must not install it locally
+[package.metadata.ewconfig]
+install = false
+
+[dependencies]
+clap = { version = "4.6.7", features = ["derive"] }
+clap-verbosity-flag = "3.0.4"
+fern = "0.7.1"
+futures-util = { version = "0.3.34", default-features = false }
+log = "0.4.34"
+rtnetlink = "0.24.0"
+tokio = { version = "1.54.1", default-features = false, features = ["net", "rt"] }
